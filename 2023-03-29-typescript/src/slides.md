@@ -188,3 +188,95 @@ myFunction({
 ```
 
 </v-click>
+
+---
+
+# You don't need to – and shouldn't – type everything
+
+## Inferring types
+
+Typescript is great at figuring out what types are.
+
+```ts
+const myArr = [1, 2, 3, 4, 5];
+//     ^? const myArr: number[]
+
+const concatenate = (numbers: number[]) => (
+  numbers.join('-')
+);
+
+const result = concatenate(myArr);
+//     ^? const result: string
+```
+
+<v-click>
+
+We do however need to type the input `numbers` to the function in this case
+
+</v-click>
+
+---
+
+# Enough talk, let's get to some syntax
+
+## Specifying types
+
+```ts{1|3-5|7-9}
+const myVar: number = 6; // Note, no need to specify type here, will be inferred
+
+const myObject: MyObjectType = {
+  property1: 'hello'
+}
+
+const myFunction = (input: MyType): MyReturnType => {
+  // do stuff
+}
+```
+
+---
+
+# Basic types
+
+## Primitives
+
+```ts
+number
+string
+boolean
+```
+ 
+
+## Arrays and tuples
+
+```ts
+const myArray: number[] = [ 1, 2, 3 ];
+const myTuple: [number, number, number] = [ 1, 2, 3 ];
+```
+
+---
+
+# Objects
+
+```ts{all|1-4|6-9|11-13|all}
+interface MyObjectType {
+  property1: string;
+  optionalProperty?: number;
+}
+
+type MyObjectType2 = {
+  property1: string;
+  optionalProperty?: number;
+}
+
+const myObject: MyObjectType = {
+  // ...
+}
+```
+
+<v-click>
+
+What's the difference you might ask?
+
+Basically nothing, I tend to use `interface`;
+
+</v-click>
