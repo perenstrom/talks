@@ -112,11 +112,13 @@ url: https://www.typescriptlang.org/play?#code/MYewdgzgLgBAtgTwIICcUwLwwNoEYA0MA
 * Prevent accidents
 
 <!--
-  Map
+  Map, see type of map and myNumber
 
-  toExponent
+  toExponent in callback
 
-  stringify
+  myArr.stringify error
+
+  myArr() error
 -->
 
 ---
@@ -150,6 +152,7 @@ myFunction({ id: '1', name: 'Per' })
 * Documentation for standard methods
 * Catch errors when developing instead of shipping to users
 * Covers edge-cases automatically
+* Reduces hopping between files to check what the function you just wrote returns
 
 </v-clicks>
 
@@ -190,6 +193,36 @@ myFunction({
 </v-click>
 
 ---
+layout: image-right
+image: /duck.jpg
+---
+
+# Duck typing
+
+Also called _structural typing_
+
+Means you sometimes have to rethink your code.
+
+And this is a _good_ thing.
+
+```ts
+interface User {
+  name: string;
+}
+
+const myFunction = (user: User) => {
+  callExternalApi(user);
+}
+
+myFunction({
+  name: 'Per',
+  address: 'Home'
+})
+// Might lead to unknown
+// errors in external API
+```
+
+---
 
 # You don't need to – and shouldn't – type everything
 
@@ -221,7 +254,7 @@ We do however need to type the input `numbers` to the function in this case
 
 ## Specifying types
 
-```ts{1|3-5|7-9}
+```ts{1|3-5|7-10}
 const myVar: number = 6; // Note, no need to specify type here, will be inferred
 
 const myObject: MyObjectType = {
@@ -230,6 +263,24 @@ const myObject: MyObjectType = {
 
 const myFunction = (input: MyType): MyReturnType => {
   // do stuff
+  // return something of type MyReturnType
+}
+```
+
+---
+
+# Typing functions
+
+```ts{1-4|1-6|all}
+const myFunction = (input: MyType): MyReturnType => {
+  // do stuff
+  // return something of type MyReturnType
+}
+
+type MyFunctionType = (input: MyType) => MyReturnType;
+const myFunction2: MyFunctionType = (input) => {
+  // do stuff
+  // return something of type MyReturnType
 }
 ```
 
@@ -252,6 +303,15 @@ boolean
 const myArray: number[] = [ 1, 2, 3 ];
 const myTuple: [number, number, number] = [ 1, 2, 3 ];
 ```
+
+<v-click>
+
+```ts{1|all}
+const myTuple = [ 1, 2, 3 ] as const;
+//     ^? const myTuple: readonly [1, 2, 3]
+```
+
+</v-click>
 
 ---
 
@@ -280,3 +340,124 @@ What's the difference you might ask?
 Basically nothing, I tend to use `interface`;
 
 </v-click>
+
+---
+
+# Union types
+
+## Specify multiple types
+
+```ts
+interface User {
+  id: string | number;
+  name: string;
+}
+
+const myArray = [4, "hello"];
+//     ^? const myArray: (string | number)[]
+```
+
+<v-click>
+
+Subtle but different:
+
+```ts{1-2|1,4-6|2,8-10|all}
+type MyMixedArrayType1 = number[] | string[];
+type MyMixedArrayType2 = (number | string)[];
+
+const myArray1: MyMixedArrayType1 = [1, 2, 3, 4];
+const myArray2: MyMixedArrayType1 = ["a", "b", "c", "d"];
+const myArray3: MyMixedArrayType1 = [1, "b", 3, "d"]; // ❗️Error
+
+const myArray4: MyMixedArrayType2 = [1, 2, 3, 4];
+const myArray5: MyMixedArrayType2 = ["a", "b", "c", "d"];
+const myArray6: MyMixedArrayType2 = [1, "b", 3, "d"]; // ✅
+
+```
+
+</v-click>
+
+---
+layout: iframe-right
+
+# the web page source
+url: https://www.typescriptlang.org/play?#code/JYOwLgpgTgZghgYwgAgKoGdrIN4ChnLAAmAXMumFKAObIA+yIArgLYBG0A3Po3CxGQpUQ1bgQpxIZAETombdAioci0+smmhEYYADcI07gF9cuBAHsQFZE0xQACtDIYsAXhw9iZAIwAaHiB8AhqOUNL+4mCSwZqBCDr64bhGnEA
+---
+
+# Literal types
+
+## Constrain stuff!
+
+When only certain values are valid.
+
+<v-click>
+
+## What about enums?
+
+Short answer, they don't behave as you might expect. My recommendation is to stay away from them.
+
+For a more in depth explanation, look at the video [_Enums considered harmful_ by _Matt Pocock_](https://www.youtube.com/watch?v=jjMbPt_H3RQ) on Youtube.
+
+</v-click>
+
+---
+
+# Type Narrowing
+
+---
+
+# Escape hatches
+
+## If your ship is sinking, use these as a last resort
+
+* Any
+* as Type
+  * useful in certain foreach functions over keys
+  * Map
+
+---
+
+# Hard to read types, how to parse?
+
+```ts
+(method) Array<number>.map<void>(callbackfn: (value: number, index: number, array: number[]) => void, thisArg?: any): void[]
+```
+
+---
+
+# Generics
+
+---
+
+# Error messages
+
+Type '(string | number)[]' is not assignable to type 'MyMixedArrayType1'.
+  Type '(string | number)[]' is not assignable to type 'number[]'.
+    Type 'string | number' is not assignable to type 'number'.
+      Type 'string' is not assignable to type 'number'.ts(2322)
+
+---
+
+# Integrating with frameworks, vue, react
+
+---
+
+# Utility functions
+
+---
+
+# Working with APIs
+
+---
+
+# Libraries and their types
+
+// Screenshot of docs telling user to install types from definitely typed
+
+---
+
+# Resources
+
+* Typescript Handbook
+* Matt Pocock
+* These slides (made with slidev)
