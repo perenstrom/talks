@@ -400,41 +400,215 @@ For a more in depth explanation, look at the video [_Enums considered harmful_ b
 
 </v-click>
 
+<!--
+  Make a user object
+  Autocompletion for state
+  Autocompletion for value
+  Error with spelling
+-->
+
+---
+layout: two-cols
 ---
 
 # Type Narrowing
 
+A way to make a broad type more specific.
+
+## Even more restricted type
+
+<div class="mr-4">
+
+```ts{all|4,11|14|all}
+interface User {
+  id: string | number;
+  name: string;
+  type: "user";
+}
+
+interface Company {
+  id: string;
+  legalName: string;
+  publicName: string;
+  type: "company";
+}
+
+type Member = User | Company;
+```
+
+</div>
+
+::right::
+
+<div class="mt-154px">
+
+```ts{none|1,2,5|1-5|7-16}
+const printName = (member: Member) => {
+  console.log(member.name);
+  // ❗️Error: Property 'name' does not
+  //          exist on type 'Company'.
+}
+
+const printName2 = (member: Member) => {
+  if (member.type === "user") {
+    console.log(member.name);
+    //           ^? member: User
+  }
+
+  else {
+    console.log(member.publicName);
+    //           ^? member: Company
+  }
+};
+```
+
+</div>
+
 ---
+layout: image
+
+# the image source
+image: /titanic.jpg
+---
+
 
 # Escape hatches
 
 ## If your ship is sinking, use these as a last resort
 
-* Any
-* as Type
-  * useful in certain foreach functions over keys
-  * Map
+* `Any`
+* `as Type`
+
+---
+layout: iframe-right
+url: https://www.typescriptlang.org/play?#code/MYewdgzgLgBAtgTwKqQIYDMCmAxArmYKAS3BgF4YAKIsAB1ygC4ZUwEBKcgPhgG8AoGDFCRYAJ0wRcAGyYwwuOACNMY8jBr1YAahgA2ANz9BMCVFxiwpyTKhGAvkA
+---
+
+# The `any` type
+
+## Turns off Typescript's checks completely
+
+* Often used in frustration when Typescript is giving developers hard to understand error messages.
+* There's _always_ a better option
+  * Fix your upstream types to be what you actually mean
+  * Generics
+  * The `unknown` type
+
+---
+
+# Type declarations with `as Type`
+
+When you _actually_ know better than Typescript.
+
+```ts{1-7|9-12}
+const getData = async () => {
+  const result = await fetch('https://my.external.api');
+  const data = await result.json();
+  //     ^? const data: any
+
+  return data as UserDetails
+}
+
+const myMap = new Map<string, number>();
+const iterator = myMap.entries();
+
+const value = iterator.next().value() as [string, number];
+```
 
 ---
 
 # Hard to read types, how to parse?
 
+The following is what you get when hovering over an array map function:
+
 ```ts
-(method) Array<number>.map<void>(callbackfn: (value: number, index: number, array: number[]) => void, thisArg?: any): void[]
+(method) Array<number>.map<number>(callbackfn: (value: number, index: number, array: number[]) => number, thisArg?: any): number[]
 ```
+
+<v-click>
+
+Let's break it down
+
+
+```ts{1-3|4-5|6-13}
+// Remove category (only a visual representation)
+Array<number>.map<number>(callbackfn: (value: number, index: number, array: number[]) => 
+  number, thisArg?: any): number[]
+// Remove generics for now (assume an array of numbers, and that map returns a number)
+Array.map(callbackfn: (value: number, index: number, array: number[]) => number, thisArg?: any): number[]
+// Move types to separate definitions
+type CallBackFn = (
+  value: number, 
+  index: number, 
+  array: number[]
+) => number
+
+Array.map(callbackfn: CallBackFn, thisArg?: any): number[]
+```
+
+</v-click>
 
 ---
 
 # Generics
 
+A way of _passing arguments_ to a type
+
+<v-click>
+
+Passing parameters to a function
+
+```ts
+const myFunction = (input: number) => {
+  return input + 1;
+}
+
+const addedNumber = myFunction(5);
+
+```
+
+</v-click>
+
+<v-click>
+
+Passing arguments to a type
+
+```ts{1-4|1-7|all}
+const myFunction = <T>(input: T) => {
+  if (typeof input === "number") return input + 1;
+  else return "Not a number";
+};
+
+myFunction<number>(1); // returns 2
+myFunction<string>("1"); // returns "Not a number"
+
+myFunction(true); // returns "Not a number"
+// ^? const myFunction: <boolean>(input: boolean) => number | "Not a number" 
+
+```
+
+</v-click>
+
 ---
 
 # Error messages
 
+We had this example before:
+
+```ts {monaco}
+type MyMixedArrayType1 = number[] | string[];
+
+const myArray3: MyMixedArrayType1 = [1, "b", 3, "d"]; // ❗️Error
+```
+
+What the hell does this mean?
+
+```ts{all|1|2|3|4}
 Type '(string | number)[]' is not assignable to type 'MyMixedArrayType1'.
   Type '(string | number)[]' is not assignable to type 'number[]'.
     Type 'string | number' is not assignable to type 'number'.
-      Type 'string' is not assignable to type 'number'.ts(2322)
+      Type 'string' is not assignable to type 'number'.
+```
 
 ---
 
@@ -458,6 +632,6 @@ Type '(string | number)[]' is not assignable to type 'MyMixedArrayType1'.
 
 # Resources
 
-* Typescript Handbook
-* Matt Pocock
-* These slides (made with slidev)
+* [Typescript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) – typescriptlang.org/docs/handbook/intro.html
+* [Matt Pocock](https://www.youtube.com/@mattpocockuk) – www.youtube.com/@mattpocockuk
+* [These slides](https://per.fyi/talks) (made with [slidev](https://sli.dev/)) – per.fyi/talks
