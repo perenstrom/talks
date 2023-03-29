@@ -1,6 +1,7 @@
 ---
 theme: seriph
 lineNumbers: true
+css: unocss
 
 layout: cover
 ---
@@ -595,7 +596,7 @@ myFunction(true); // returns "Not a number"
 
 We had this example before:
 
-```ts {monaco}
+```ts
 type MyMixedArrayType1 = number[] | string[];
 
 const myArray3: MyMixedArrayType1 = [1, "b", 3, "d"]; // ❗️Error
