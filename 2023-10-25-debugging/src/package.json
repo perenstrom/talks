@@ -1,0 +1,8 @@
+{
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "export": "slidev export --output ../2023-10-25-debugging.pdf"
+  }
+}
