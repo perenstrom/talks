@@ -1,0 +1,8 @@
+{
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "export": "slidev export --output ../2024-04-10-msw.pdf"
+  }
+}
