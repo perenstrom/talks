@@ -1,0 +1,11 @@
+{
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "export": "slidev export --output ../2025-01-14-ts-react.pdf"
+  },
+  "dependencies": {
+    "@slidev/theme-apple-basic": "^0.25.1"
+  }
+}

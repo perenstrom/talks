@@ -1,5 +1,9 @@
 # Welcome to my talks repository
 
+## 2025
+
+* [Brief intro to Typescript and React](https://github.com/perenstrom/talks/tree/main/2025-01-14-ts-react-intro) – Internal talk @ Bontouch - Becoming Framna
+
 ## 2024
 
 * [Mocking backend APIs with `msw`](https://github.com/perenstrom/talks/tree/main/2024-04-10-msw) – Internal talk @ Bontouch
