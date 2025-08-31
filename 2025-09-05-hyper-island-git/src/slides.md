@@ -157,3 +157,265 @@ layout: section
 # Exercise - Terminal
 
 ---
+
+# Git
+
+## What is it
+
+* Version management
+  * Instead of creating assignment.docx, assignment-2.docx, assignment-final.docx, assignment-final-2.docx, assignment-final-final-for-real.docx
+  * Like the version history in Google Docs, or Dropbox
+  * Like the history in Photoshop
+* Manual control over every step in the history, we decide ourselves when and what to add as a history step
+
+---
+
+# Git
+
+## Why do we use it?
+
+* Makes it easy to see when something was introduced or removed in your code base
+* Allows you to work on different branches of your code
+* Makes collaborating on code seamless
+* Allows us to easily release new versions when we're done with a feature, instead of always doing changes in the published web page
+
+---
+
+# Git
+
+## Important!
+
+**Don't add sensitive information (API Keys, passwords, etc) to git!**
+
+While we _can_ rewrite the git history, it's a pain, and once a password has been added to the history it's visible forever.
+
+---
+
+# Git
+
+## Repository
+
+A project in Git is called a _repository_. The repository contains a hidden folder that contains all information related to git, the full history, different branches, etc.
+
+We create a new repository for every project or web site.
+
+To initialize a repository in a folder on our computer we use the command `git init`. This creates an empty repository in that folder, ready to accept our changes.
+
+---
+
+# Git
+
+## Commit
+
+* Every change in a git history is called a _commit_. It's a change we _commit_ to.
+* Every commit is stored as a difference between the previous step and the next, i.e. we don't store all code in all steps, only what has changed.
+* These differences are called _diffs_.
+* These changes can then be used to go back in time to any point in the code base's history.
+* Every commit has an accompanying _commit message_ that we write ourselves
+  * The commit message should be brief and descriptive of the change
+  * *The Will Rule*, any commit message should make sense if we say "This commit will" before the message
+    * Good: "Add an image", "Fix bug in login", "Rework the home page"
+    * Bad: "Added image", "Fixed bug", "Reworked the home page", "fix", "asdfasdfa"
+
+---
+
+# Git
+
+## The stage, and tracking
+
+* To commit changes to a file, we need to tell Git to _track_ that file
+* All files start out untracked
+* Every uncommitted change we are working on needs its file to be tracked, and then added to _the stage_, before we can commit it
+* We can – and often do – stage only part of what we've changed and commit that
+* Tracking and staging are conveniently done in one command, the `git add` command
+  * `git add` takes a third parameter which is the file we want to track and stage
+  * If we want to track and stage a file called `index.html`, we use the command `git add index.html`
+  * We can also track and stage all changed files at the same time with `git add .` (notice the period)
+
+---
+
+# Git
+
+## How often do we commit?
+
+* General rule is to commit small and often
+  * This could be several times an hour, or a couple of times a day
+* A goal is that the code base is always working at every commit
+  * This means that when we're building web apps in Javscript, we should not commit code that is in a state that doesn't work
+  * Doing many small commits is very helpful when collaborating, it makes it easy to track how files have evolved over time, and makes combining different changes from different people much easier
+
+---
+layout: section
+---
+
+# Exercise
+# Git 1: Init and committing
+
+---
+
+# Git
+
+## Branches
+
+* All commits in a git repository belongs to a branch
+* By default a branch called `main` (or previously `master`) is created when initializing a repository
+* We can look at all commits of a repository a bit like a tree, with branches of code diverging off, and unlike a tree merge together with the trunk again
+* Branches are used heavily in development
+  * Usually we have a `main` branch, which is always released to our url on the web
+  * From that we branch off different branches where we can work on new features
+  * On these branches we follow the commit small and often tactic
+  * When we're done with our feature, we merge it back into `main` and release it to our users
+
+---
+
+# Git
+
+## Branches
+
+* Switching between branches are called Checking out
+* To create a new branch and check it out we use the command `git checkout -b my-branch-name`
+* Creating new branches are always made from the branch you currently have checked out, nothing is preventing us from branching from a branch
+* In the terminal you will see what branch you're currently on, in my terminal it says `git: (main)` when I'm on the `main` branch
+
+---
+
+# Git
+
+## Merging
+
+* To merge our branch back into another branch we use the command `git merge`
+* We merge a target branch, into the branch we have checked out
+  * To merge a branch called `my-branch-name` into `main`, we first `git checkout main`, and then `git merge my-branch-name`
+* There are a few merge _strategies_ that git automatically choses between
+  * The two common ones are _fast-forward_ and _merge commit_
+  * _fast-forward_ takes all commits on our `my-branch-name` and adds them one by one to the `main` branch
+  * _merge commit_ takes all our commits and mashes them together, and creates a new single commit on `main` with all of our changes
+* Merging does not delete a branch, we can continue to commit to either branch afterwards
+
+---
+layout: section
+---
+
+# Exercise
+# Git 2: Branching and merging
+
+---
+
+# Git
+
+## Rebasing
+
+* Often when working on a project with others, stuff will change on `main` while you are working on your feature branch.
+* We often want to incorporate those newest changes on `main` in our feature branch and continue our work.
+* To do this we can either _merge_ or _rebase_
+  * Merging is the easiest, where we merge `main` into our branch (by checking out our feature branch and doing `git merge main`)
+  * Rebasing means taking all of the commits we've done on our feature branch, and applying them one by one on the new state of `main`. This makes it look like we really started our branch from the latest commit on `main``
+    * Rebasing makes for a cleaner git history, but can be a bit tricky to do
+
+---
+layout: section
+---
+
+# Exercise
+# Git 3: Rebasing
+
+---
+
+# Git
+
+## Merge conflicts
+
+* When the same line has changed in two different branches and we try to merge them together, we will encounter a _merge conflict_
+* This means that Git can't automatically figure out what version to keep, and we have to help it out
+* Merge conflicts pauses a merge in a conflict stage, and waits for you to resolve the files and commit the correct version
+* In the conflicting file it will look something like:
+
+```
+<< HEAD
+This is how the line looks on our current branch
+=======
+This is how the line looks on the branch we want to merge into our
+>> main
+```
+
+* We select our change by replacing this whole block of five lines with the single line we want to keep
+* We then commit this change with `git add .` and `git commit -m "merge branch main into feature"`
+
+---
+
+# Git
+
+## Merge conflicts
+
+* Merge conflicts often occur when we're done with a feature and want to merge it into `main`, when something has happened on `main`
+* Best practice is to:
+  * merge the other way around first, merge `main` into our feature branch
+  * resolve the merge conflict on our feature branch and commit that
+  * merge the feature branch into `main`, which should now be conflict free
+
+---
+layout: section
+---
+
+# Exercise
+# Git 4: Conflict management
+
+---
+
+# Git
+
+## Stashing
+
+* Sometimes you want to switch branch to look at something on another branch, but you have changed some files that you are not ready to commit yet
+* You can use `git stash` to temporarily store your ongoing changes without committing them
+* You can then switch between branches, do your thing, and then come back to your branch
+* When you're ready to continue your ongoing work, use `git stash pop` to bring your changes out from storage
+
+---
+
+# Git
+
+## Amending
+
+* You can change your last commit if you noticed that you did something wrong and don't want to make a whole new commit to fix that, or if you want to change your commit message
+* If you want to add a new change, add the file with `git add .`
+* Then commit while using the `--amend` flag: `git commit --amend -m "My edited message"`
+
+---
+
+# Git
+
+## Remotes: Push and Pull
+
+So far we've only worked with a local git repository on your computer, but this is usually not the case. Usually our code repository is also stored somewhere online, in for example GitHub (which we'll come to later). These remote locations of your local repository is called _remotes_. 
+
+* Remotes are other locations of your repository
+* A local branch is usually tied to a remote branch
+* To fetch the latest changes of a branch from the remote (say if the code has changed on github by one of your colleagues), you _pull_ those changes to your local branch
+* When you have done something to a local branch and want to upload it to the remote, you _push_ your changes to the remote branch
+
+---
+
+# Git
+
+## Bonus: Git på svenska
+
+When talking about Git in Swedish, things get weird quite quickly
+
+> "Kan du pulla mina ändringar till branchen?"
+
+A GitHub user named Björn has made a list of Swedish terms for the Git terms we've come across, to make it easier to communicate with fellow Swedes. Some examples:
+
+> "Kan du rycka grenen jag just ympade och knuffa till github?"
+
+<div class="p-2"/>
+
+> "Skicka en ryckbegäran när du är färdig med sammanfogningen!"
+
+<div class="p-2"/>
+
+> "Hoppsan, jag råkade visst kraftknuffa mot mäster-grenen"
+
+Full list at: https://github.com/bjorne/git-pa-svenska
+
+<small><i>Full disclaimer, no-one uses this</i></small>
