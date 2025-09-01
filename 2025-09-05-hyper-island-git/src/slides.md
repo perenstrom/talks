@@ -657,3 +657,148 @@ When everyone is happy, press the Merge pull request to merge your changes into 
 The merge event can now be seen in the history, and there's a Delete branch button to remove your branch (if it was temporary). This deletion can always be reverted!
 
 ![](./images/github-20.png)
+
+---
+
+# Markdown
+
+## The Microsoft Word(tm) of the web
+
+* On the web, everything* is in plain text. That is, it doesn't have any formatting
+* Markdown to the rescue!
+* Markdown lets you add styling to text by using a simple syntax
+* Markdown files end in the file extension `.md`
+* All of this presentation, and all exercises are written in Markdown
+
+Cheat sheet: https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+
+---
+
+# Markdown
+
+## Syntax - Headings
+
+Headings are made by starting the line with a `#`, the more `#` the smaller the heading.
+
+`# My heading` will render a level 1 heading, corresponding to the `<h1>` html tag. ("Markdown") on this slide uses this
+
+`## My heading` will render a level 2 heading, corresponding to the `<h2>` html tag. ("Syntax") on this slide uses this
+
+...and so on
+
+---
+
+# Markdown
+
+## Syntax - Formatting
+
+* To make text **bold**, write `**my bold text**` or `__my italic text__`
+* To make text *italic*, write `*my italic text*` or `_my italic text_`
+* To make text ~~crossed out~~, write `~my crossed out text~`
+* To make `inline code`, write \`asdf\` (surround with "back-ticks")
+* To make multiline code, write a line with only three back-ticks (\`\`\`) above, and below:
+
+```
+Here is 
+some multiline
+code
+```
+
+---
+
+# Markdown
+
+## Syntax - Links and images
+
+* To make a [link](https://google.com), write `[Link text](https://google.com)`
+* To inline an image, write `![Image description](https://google.com/logo.png)`
+
+---
+layout: section
+---
+
+# Exercise
+# GitHub 1: Creating your profile
+
+---
+
+# GitHub 2
+
+## Publishing on GitHub Pages
+
+* Publishing your code is called _deploying_
+* A great way to get started is with GitHub Pages
+* Every GitHub account comes with its own web page at `<username>.github.io`
+* To publish your web page at that url, the Git Repository on Github must be named exactly the same
+* Other repositories can also be published, but will be at `<username>.github.io/<repository-name>`
+* Can be turned on in the repository settings
+
+---
+
+# GitHub 2
+
+## Connecting existing code to a GitHub repository
+
+* If you have a Git repository locally (if you've run `git init` on your computer)
+* 2 ways
+  * Cloning a repository and adding code locally
+  * Creating an empty repository and point a local repository to that
+
+
+---
+layout: section
+---
+
+# Exercise
+# GitHub 2: Adding your personal website to GitHub
+
+---
+
+# Git GUI Clients
+
+## You don't _have_ to use the terminal
+
+* There are many free and paid Git Clients
+* These allow you to 
+  * see the graph of branches
+  * select what to commit by clicking files
+  * see diffs nicely formatted
+  * commit and push
+  * handle merge conflicts
+* I don't use the terminal for Git, but it's very good to know what your client does behind the scenes, sometimes you will get in situations where the Git client isn't enough
+
+---
+
+# Git GUI Clients
+
+## Suggestions
+
+* Git GUI (Windows, Free) – Comes with the Git for Windows installer
+* VS Code (Win/Mac, Free) – Your favourite editor actually comes with a Git client!
+* GitHub desktop (Win/Mac, Free) – GitHub's own client
+  * https://github.com/apps/desktop
+* SourceTree (Win/Mac, Free) – Atlassian's client
+  * https://www.sourcetreeapp.com/
+* GitKraken (Win/Mac, Free & Paid) – My preference!
+  * https://www.gitkraken.com/
+* Fork (Win/Mac, Paid) – A popular premium choice
+  * https://git-fork.com/
+
+---
+layout: statement
+---
+
+# That's all folks!
+
+---
+
+# Resources
+
+* [Getting started with the terminal](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line)
+* [Safe terminal experimentation](https://sandbox.bio/playgrounds/terminal)
+* [The Git manual](https://git-scm.com/doc)
+* [GitHub's introduction to Git](https://docs.github.com/en/get-started/start-your-journey/about-github-and-git#about-git)
+* [GitHub's Markdown documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+* [Personal Access Tokens in GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+* [This talk]()
+* [Exercises]()
