@@ -419,3 +419,241 @@ A GitHub user named Björn has made a list of Swedish terms for the Git terms we
 Full list at: https://github.com/bjorne/git-pa-svenska
 
 <small><i>Full disclaimer, no-one uses this</i></small>
+
+---
+
+# GitHub
+
+## Git vs Github
+
+* Git is the underlying mechanic of committing changes etc.
+* GitHub is a web service which can act as a remote for your repositories
+* GitHub also adds additional functionalities and work flows for a complete development management solution
+* GitHub is owned by Microsoft (and since recently moved to their _AI_ department...)
+
+---
+
+# GitHub
+
+## Repositories
+
+* In GitHub you can create your own repositories, or be have access to other's repositories
+* Repositories can be _Private_ (hidden to anyone without access), or _Public_ (visible to anyone)
+* Repositories (and users) can be part of organizations, which in turn can have their own repositories
+
+---
+
+# GitHub
+
+## Anatomy of a repository - Code tab
+
+Code tab – A repository's home page, allows you to browse the source code and read the README
+
+![](./images/github-1.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository - Code tab
+
+Watching repositories – Watched repositories gives you a notification if something happens in them
+
+![](./images/github-2.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository - Code tab
+
+Starring repositories – A bit like _liking_. Can be a good indicator of how good a tool is
+
+![](./images/github-3.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository - Code tab
+
+Forking repositories – If you want to create your own version from another repository, you fork that repository
+
+![](./images/github-4.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository - Code tab
+
+Cloning – If you press the Code button, you will get info on how to clone (create a local copy) the repository
+
+![](./images/github-5.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Issues tab
+
+Issues – Can be used for project management, or bug reporting for your users
+
+![](./images/github-6.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Projects tab
+
+Projects – Used to organize issues, track goals, etc.
+
+![](./images/github-7.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Projects tab
+
+Projects – Used to organize issues, track goals, etc.
+
+![](./images/github-8.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+Pull Requests – When you have made changes and want to merge them into a project on GitHub, you open a Pull Request (PR). Named because you want the repository to _Pull_ your changes into their code base, another name could be "Merge request".
+
+Vital for collaboration with others. Every time a change you've made are to be added to the product, you open a PR, your colleagues review and approve it, and then you merge it.
+
+![](./images/github-9.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+To open a new PR, press the New pull request button. 
+
+![](./images/github-10.png)
+
+---
+layout: two-cols-header
+---
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+In the top you will select target branch, and source branch.
+
+::left:: 
+
+* Fill in a good descriptive title of your change (1)
+* Write a description of your change (2)
+* Assign yourself (usually) (3)
+* Add reviewers if needed (4)
+* Press Create pull request (5)
+
+::right::
+
+![](./images/github-11.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+The PR page now display a timeline of changes, with your description at the start.
+
+![](./images/github-12.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+The Commits tab shows all commits that has been made on the branch you want to merge.
+
+![](./images/github-13.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+The Files changed tab shows all the files that has changed, and all changes in those files.
+
+Here we see that I've changed line 3, the red part is the old one, and the green part is the new.
+
+![](./images/github-14.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+If you hover a line, a plus appears which you can click to add a comment. This comment can either be posted directly, or added to a Review.
+
+![](./images/github-15.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+To review someone else's changes (or your own I guess), press the Review changes (or Finish your review), add a comment, choose if you approve or want some changes to be made, and press Submit review.
+
+![](./images/github-16.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+Our colleagues review can now be seen in the Conversation tab.
+
+<div class="w-130">
+<img src="./images/github-17.png" />
+</div>
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+If you want, you can reply to comments, and/or mark a conversation as "resolved"
+
+![](./images/github-18.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+When everyone is happy, press the Merge pull request to merge your changes into the target branch!
+
+![](./images/github-19.png)
+
+---
+
+# GitHub
+
+## Anatomy of a repository – Pull requests tab
+
+The merge event can now be seen in the history, and there's a Delete branch button to remove your branch (if it was temporary). This deletion can always be reverted!
+
+![](./images/github-20.png)
