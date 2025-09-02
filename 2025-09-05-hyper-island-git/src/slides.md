@@ -800,5 +800,5 @@ layout: statement
 * [GitHub's introduction to Git](https://docs.github.com/en/get-started/start-your-journey/about-github-and-git#about-git)
 * [GitHub's Markdown documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 * [Personal Access Tokens in GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
-* [This talk]()
-* [Exercises]()
+* [This talk](https://github.com/perenstrom/talks/tree/main/2025-09-05-hyper-island-git)
+* [Exercises](https://github.com/perenstrom/perenstrom/tree/master/education-and-articles/hyper-island-fed27-fundamentals-git)
